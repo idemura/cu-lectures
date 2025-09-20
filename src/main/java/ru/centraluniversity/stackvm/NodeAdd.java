@@ -1,4 +1,4 @@
-package ru.centraluniversity.stackvm.v1;
+package ru.centraluniversity.stackvm;
 
 public final class NodeAdd implements Instruction {
   public void eval(OpStack stack) {

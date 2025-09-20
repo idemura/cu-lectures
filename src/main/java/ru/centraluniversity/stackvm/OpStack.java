@@ -1,4 +1,4 @@
-package ru.centraluniversity.stackvm.v0;
+package ru.centraluniversity.stackvm;
 
 public class OpStack {
   private final int[] stack;
