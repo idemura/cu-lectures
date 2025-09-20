@@ -6,13 +6,13 @@ public class Driver {
 
     stack.push(2);
     stack.push(3);
-    new NodeAdd().eval(stack);
+    Factory.makeAdd().eval(stack);
 
     stack.push(1);
-    new NodeSub().eval(stack);
+    Factory.makeSub().eval(stack);
 
     stack.push(3);
-    new NodeMul().eval(stack);
+    Factory.makeMul().eval(stack);
 
     System.out.println(stack.pop());
   }
