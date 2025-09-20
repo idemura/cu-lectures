@@ -1,9 +1,9 @@
-package ru.centraluniversity.stackvm.v0;
+package ru.centraluniversity.stackvm;
 
-public class NodeAdd {
+public class NodeSub {
   public void eval(OpStack stack) {
     int a = stack.pop();
     int b = stack.pop();
-    stack.push(a + b);
+    stack.push(b - a);
   }
 }

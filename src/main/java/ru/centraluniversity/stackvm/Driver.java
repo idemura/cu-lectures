@@ -1,4 +1,4 @@
-package ru.centraluniversity.stackvm.v0;
+package ru.centraluniversity.stackvm;
 
 public class Driver {
   public static void main(String[] args) {
