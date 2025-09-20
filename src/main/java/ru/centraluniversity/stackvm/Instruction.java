@@ -1,4 +1,4 @@
-package ru.centraluniversity.stackvm.v1;
+package ru.centraluniversity.stackvm;
 
 public interface Instruction {
   void eval(OpStack stack);
