@@ -1,7 +1,5 @@
 package ru.centraluniversity.stackvm;
 
-import java.util.function.IntSupplier;
-
 public class Lambdas {
   private final int data;
 
@@ -9,12 +7,14 @@ public class Lambdas {
     this.data = data;
   }
 
-  static int withLambda(IntSupplier supplier) {
-    return supplier.getAsInt() * 13;
+  static long withLambda(LambdaFunc f) {
+    return f.apply(12);
   }
 
   void test() {
-    withLambda(() -> 42);
-    withLambda(() -> data);
+    int capture = 12;
+    withLambda((n) -> n + 42);
+    withLambda((n) -> n * data);
+    withLambda((n) -> n - capture);
   }
 }
