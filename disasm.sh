@@ -11,5 +11,5 @@ find target/classes -name '*.class' | while read -r classfile; do
   mkdir -p "$(dirname "$outfile")"
 
   # Run javap and save output
-  javap -v "$classfile" > "$outfile"
+  javap -p -v "$classfile" > "$outfile"
 done
