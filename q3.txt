@@ -1,0 +1,18 @@
+input: [3, 0, 2, -1, 2, 0, -5]
+descriptor: ([I)I
+stack=3, locals=2, args_size=1
+   0: iconst_0
+   1: istore_1
+   2: aload_0
+   3: iload_1
+   4: iaload
+   5: ifeq          17
+   8: iload_1
+   9: aload_0
+  10: iload_1
+  11: iaload
+  12: iadd
+  13: istore_1
+  14: goto          2
+  17: iload_1
+  18: ireturn

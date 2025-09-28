@@ -1,0 +1,27 @@
+input: [5, 3, 2, 3, 2, 3]
+descriptor: ([I)I
+stack=4, locals=4, args_size=1
+   0: lconst_0
+   1: lstore_1
+   2: iconst_1
+   3: istore_3
+   4: iload_3
+   5: aload_0
+   6: arraylength
+   7: if_icmpge     23
+  10: lload_1
+  11: aload_0
+  12: iload_3
+  13: iaload
+  14: i2l
+  15: ladd
+  16: lstore_1
+  17: iinc          3, 1
+  20: goto          4
+  23: lload_1
+  24: aload_0
+  25: arraylength
+  26: i2l
+  27: ldiv
+  28: l2i
+  29: ireturn

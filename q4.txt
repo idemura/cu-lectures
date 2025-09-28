@@ -1,0 +1,41 @@
+input: 19
+descriptor: (I)Z
+stack=3, locals=2, args_size=1
+   0: iload_0
+   1: iconst_2
+   2: irem
+   3: ifne          8
+   6: iconst_0
+   7: ireturn
+   8: iload_0
+   9: iconst_3
+  10: irem
+  11: ifne          16
+  14: iconst_0
+  15: ireturn
+  16: iconst_0
+  17: istore_1
+  18: iinc          1, 6
+  21: iload_0
+  22: iload_1
+  23: iconst_1
+  24: isub
+  25: irem
+  26: ifne          31
+  29: iconst_0
+  30: ireturn
+  31: iload_0
+  32: iload_1
+  33: iconst_1
+  34: iadd
+  35: irem
+  36: ifne          41
+  39: iconst_0
+  40: ireturn
+  41: iload_1
+  42: iload_1
+  43: imul
+  44: iload_0
+  45: if_icmple     18
+  48: iconst_1
+  49: ireturn
