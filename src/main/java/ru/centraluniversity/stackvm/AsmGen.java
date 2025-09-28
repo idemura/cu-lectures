@@ -18,7 +18,7 @@ public final class AsmGen {
     this.classOutputPath = classOutputPath;
   }
 
-  void generateInvokeDynamic() {
+  IntFunc generateInvokeDynamic() throws ReflectiveOperationException {
     final var packageName = getClass().getPackageName().replace('.', '/') + "/";
     final var baseClassName = packageName + "IntFunc";
     final var mainClassName = packageName + "InDyGen";
@@ -72,49 +72,40 @@ public final class AsmGen {
       throw new RuntimeException(e);
     }
 
-    try {
-      var loader =
-          new ClassLoader() {
-            Class<?> define(byte[] bytes) {
-              return defineClass(null, bytes, 0, bytes.length);
-            }
-          };
+    var loader =
+        new ClassLoader() {
+          Class<?> define(byte[] bytes) {
+            return defineClass(null, bytes, 0, bytes.length);
+          }
+        };
 
-      Class<?> clazz = loader.define(bytes);
-      var lambda = (IntFunc) clazz.getDeclaredConstructor().newInstance();
-      System.out.println(lambda.apply(12));
-      System.out.println(lambda.apply(13));
-    } catch (ReflectiveOperationException e) {
-      throw new RuntimeException(e);
-    }
+    Class<?> clazz = loader.define(bytes);
+    return (IntFunc) clazz.getDeclaredConstructor().newInstance();
   }
 
   public static CallSite bootstrapInDy(
-      MethodHandles.Lookup lookup, String name, MethodType methodType, int extra) {
-    try {
-      final MethodHandle biMethod;
-      switch (name) {
-        case "myIndyAdd":
-          biMethod =
-              lookup.findStatic(
-                  AsmGen.class,
-                  "myAddMethod",
-                  MethodType.methodType(int.class, int.class, int.class));
-          break;
-        case "myIndyMul":
-          biMethod =
-              lookup.findStatic(
-                  AsmGen.class,
-                  "myMulMethod",
-                  MethodType.methodType(int.class, int.class, int.class));
-          break;
-        default:
-          throw new RuntimeException("Not found: " + name);
-      }
-      return new ConstantCallSite(MethodHandles.insertArguments(biMethod, 0, extra));
-    } catch (ReflectiveOperationException e) {
-      throw new RuntimeException(e);
+      MethodHandles.Lookup lookup, String name, MethodType methodType, int extra)
+      throws ReflectiveOperationException {
+    final MethodHandle biMethod;
+    switch (name) {
+      case "myIndyAdd":
+        biMethod =
+            lookup.findStatic(
+                AsmGen.class,
+                "myAddMethod",
+                MethodType.methodType(int.class, int.class, int.class));
+        break;
+      case "myIndyMul":
+        biMethod =
+            lookup.findStatic(
+                AsmGen.class,
+                "myMulMethod",
+                MethodType.methodType(int.class, int.class, int.class));
+        break;
+      default:
+        throw new NoSuchMethodException("Method: " + name);
     }
+    return new ConstantCallSite(MethodHandles.insertArguments(biMethod, 0, extra));
   }
 
   public static int myAddMethod(int a, int b) {
