@@ -1,8 +1,7 @@
 package ru.centraluniversity.stackvm;
 
 import static org.objectweb.asm.Opcodes.*;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Handle;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.invoke.CallSite;
@@ -10,6 +9,8 @@ import java.lang.invoke.ConstantCallSite;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.Handle;
 
 public final class AsmGen {
   private final String classOutputPath;
